@@ -205,7 +205,7 @@ async def main():
                 'concurrently' if parallel_fetch else 'serially', sample_period, user_config.get('keep_alive', False))
 
     watchdog_en = user_config.get('watchdog', False)
-    max_errors = 200 if watchdog_en else 0
+    max_errors = 5000 if watchdog_en else 0
 
     asyncio.create_task(background_loop(
         timeout=max(120., sample_period * 3) if watchdog_en else 0,
